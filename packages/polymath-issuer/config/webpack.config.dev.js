@@ -1,4 +1,3 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -11,6 +10,7 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const baseBabelConfig = require('../../../config/babel.config.js');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -47,8 +47,11 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
         ident: 'postcss',
         plugins: () => [
           require('postcss-flexbugs-fixes'),
-          autoprefixer({
-            flexbox: 'no-2009',
+          require('postcss-preset-env')({
+            autoprefixer: {
+              flexbox: 'no-2009',
+            },
+            stage: 3,
           }),
         ],
       },
@@ -72,8 +75,6 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry: [
-    // We ship a few polyfills by default:
-    require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
     // When you save a file, the client will either apply hot updates (in case
@@ -194,7 +195,7 @@ module.exports = {
           // Process application JS with Babel.
           // The preset includes JSX, Flow, and some ESnext features.
           {
-            test: /\.(js|jsx|mjs)$/,
+            test: /\.(js|jsx)$/,
             include: paths.srcPaths,
             exclude: [/[/\\\\]node_modules[/\\\\]/],
             use: [
@@ -209,12 +210,18 @@ module.exports = {
               {
                 loader: require.resolve('babel-loader'),
                 options: {
+                  presets: ['react-app'],
+                  compact: false,
+                  plugins: [
+                    ...baseBabelConfig.plugins,
+                    'react-hot-loader/babel',
+                  ],
                   // This is a feature of `babel-loader` for webpack (not Babel itself).
                   // It enables caching results in ./node_modules/.cache/babel-loader/
                   // directory for faster rebuilds.
                   cacheDirectory: true,
-                  highlightCode: true,
-                  plugins: ['react-hot-loader/babel'],
+                  // Don't waste time on Gzipping the cache
+                  cacheCompression: false,
                 },
               },
             ],
@@ -223,6 +230,7 @@ module.exports = {
           // Unlike the application JS, we only compile the standard ES features.
           {
             test: /\.js$/,
+            exclude: [/@babel(?:\/|\\{1,2})runtime/],
             use: [
               // This loader parallelizes code compilation, it is optional but
               // improves compile time on larger projects
@@ -236,12 +244,23 @@ module.exports = {
                 loader: require.resolve('babel-loader'),
                 options: {
                   babelrc: false,
+                  configFile: false,
                   compact: false,
                   presets: [
-                    require.resolve('babel-preset-react-app/dependencies'),
+                    [
+                      require.resolve('babel-preset-react-app/dependencies'),
+                      { helpers: true },
+                    ],
                   ],
                   cacheDirectory: true,
-                  highlightCode: true,
+                  // Don't waste time on Gzipping the cache
+                  cacheCompression: false,
+
+                  // If an error happens in a package, it's possible to be
+                  // because it was compiled. Thus, we don't want the browser
+                  // debugger to show the original code. Instead, the code
+                  // being evaluated would be much more helpful.
+                  sourceMaps: false,
                 },
               },
             ],
@@ -292,11 +311,6 @@ module.exports = {
               'sass-loader'
             ),
           },
-          // The GraphQL loader preprocesses GraphQL queries in .graphql files.
-          {
-            test: /\.(graphql)$/,
-            loader: 'graphql-tag/loader',
-          },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.
@@ -329,7 +343,7 @@ module.exports = {
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
-    new InterpolateHtmlPlugin(env.raw),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env.stringified),

@@ -1,7 +1,9 @@
+
+
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
-const findMonorepo = require('react-dev-utils/workspaceUtils').findMonorepo;
+const findMonorepo = require('./workspaceUtils').findMonorepo;
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -47,7 +49,9 @@ module.exports = {
   appIndexJs: resolveApp('src/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
+  yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
+  proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
