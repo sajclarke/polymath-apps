@@ -477,7 +477,49 @@
     "name": "solc",
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "15": {
+      "events": {
+        "0x5a3e66efaa1e445ebd894728a69d6959842ea1e97bd79b892797106e270efcd9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "ProxyOwnershipTransferred",
+          "type": "event"
+        },
+        "0x8e05e0e35ff592971ca8b477d4285a33a61ded208d644042667b78693a472f5e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_newVersion",
+              "type": "string"
+            },
+            {
+              "indexed": true,
+              "name": "_newImplementation",
+              "type": "address"
+            }
+          ],
+          "name": "Upgraded",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6",
+      "transactionHash": "0xa4d52099bf41e2d9941151123c670972e8a1321957881b89aefb23b2bd7f728a"
+    }
+  },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-06T19:15:58.523Z"
+  "updatedAt": "2018-10-06T20:28:44.553Z"
 }

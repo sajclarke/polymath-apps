@@ -2210,7 +2210,61 @@
     "name": "solc",
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "15": {
+      "events": {
+        "0x3f87f1a417fa1b32950c68247a8db7d7a3e503e04a6ed914e081c4cf8c4dd480": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_types",
+              "type": "uint8[]"
+            },
+            {
+              "indexed": false,
+              "name": "_module",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "ModuleArchived",
+          "type": "event"
+        },
+        "0x69aa158182e215a2a46d92c014393158ddfe3c36f1b3f139de0f347b8f2028d1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_types",
+              "type": "uint8[]"
+            },
+            {
+              "indexed": false,
+              "name": "_module",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "ModuleUnarchived",
+          "type": "event"
+        }
+      },
+      "links": {
+        "TokenLib": "0x2c2b9c9a4a25e24b174f26114e8926a9f2128fe4"
+      },
+      "address": "0x4e72770760c011647d4873f60a3cf6cdea896cd8",
+      "transactionHash": "0xaac2081ea249267e8210b59ff6b7658a899980ad4bfecc841a67c8f5de9ef4b4"
+    }
+  },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-06T19:15:58.531Z"
+  "updatedAt": "2018-10-06T20:28:44.597Z"
 }
