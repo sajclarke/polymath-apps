@@ -1,0 +1,97 @@
+{
+  "contractName": "IBurn",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058207bd36ee3b5d12fb1d8501bca54ef350260b31ae19c0ac6d29484c2cf240d445f0029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058207bd36ee3b5d12fb1d8501bca54ef350260b31ae19c0ac6d29484c2cf240d445f0029",
+  "sourceMap": "98:20:36:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;98:20:36;;;;;;;",
+  "deployedSourceMap": "98:20:36:-;;;;;",
+  "source": "pragma solidity ^0.4.24;\n\n/**\n * @title Interface to be implemented by all checkpoint modules\n */\ninterface IBurn {\n\n}\n",
+  "sourcePath": "/Users/jere/Code/polymath-core/contracts/modules/Burn/IBurn.sol",
+  "ast": {
+    "absolutePath": "/Users/jere/Code/polymath-core/contracts/modules/Burn/IBurn.sol",
+    "exportedSymbols": {
+      "IBurn": [
+        14201
+      ]
+    },
+    "id": 14202,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14200,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:36"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@title Interface to be implemented by all checkpoint modules",
+        "fullyImplemented": true,
+        "id": 14201,
+        "linearizedBaseContracts": [
+          14201
+        ],
+        "name": "IBurn",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 14202,
+        "src": "98:20:36"
+      }
+    ],
+    "src": "0:119:36"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/jere/Code/polymath-core/contracts/modules/Burn/IBurn.sol",
+    "exportedSymbols": {
+      "IBurn": [
+        14201
+      ]
+    },
+    "id": 14202,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14200,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:36"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@title Interface to be implemented by all checkpoint modules",
+        "fullyImplemented": true,
+        "id": 14201,
+        "linearizedBaseContracts": [
+          14201
+        ],
+        "name": "IBurn",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 14202,
+        "src": "98:20:36"
+      }
+    ],
+    "src": "0:119:36"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-10-06T19:15:58.376Z"
+}
